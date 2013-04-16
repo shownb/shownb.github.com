@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="no" />
+	<meta name="keywords" content="no" />
+	<title>{{ page.title }}</title>
+	<link rel="stylesheet" href="../css/css.css" type="text/css" media="screen">
+	<!--<link rel="stylesheet" href="http://snails.github.io/css/blueprint/screen.css" type="text/css" media="screen, projection">-->
+	<!--<link rel="stylesheet" href="http://snails.github.io/css/site.css" type="text/css" media="screen, projection">-->
+</head>
+
+<body>
+	<div id="page">
+	      
+		<header>
+			<div class="container">
+			<div id="name-title" class="span-5">
+			<h1>未知博客</h1>
+			</div>
+
+			<nav id="main" class="span-7 last">
+			<ul>
+			<li><a href="http://weibo.com/ulgear">weibo</a></li>
+			<li><a href="/">Home</a></li>
+			</ul>
+			</nav>
+			</div>
+		</header>
+
+		<div id="content" >
+			<section class="container">
+				<!-- Unabridged post content -->
+				<div class="span-12 last">
+				<article class="post">
+				<h2 class="post-title">{{ page.title }}</h2>
+				<div class="post byline">
+				Filed under <a href="/notebook.html?cat=cat-学习">{{ category }}</a> on {{ page.date | date: "%d %b, %Y" }}
+				</div>
+				<div class="post content">
+				{{ content }}    
+				</div>
+				</article>
+
+				<div id="comments">
+				<div id="disqus_thread">
+							<script type="text/javascript">
+							var duoshuoQuery = {short_name:"shownb"};
+							(function() {
+								var ds = document.createElement('script');
+								ds.type = 'text/javascript';ds.async = true;
+								ds.src = 'http://static.duoshuo.com/embed.js';
+								ds.charset = 'UTF-8';
+								(document.getElementsByTagName('head')[0] 
+								|| document.getElementsByTagName('body')[0]).appendChild(ds);
+							})();
+							</script>
+				</div>
+				</div>
+
+				</div>
+			</section>
+	    </div>
+
+		<footer>  
+			<div class="container"> 
+				<div class="span-7">
+				<h2 >Connect <span class="ampersand">&</span> Follow</h2>
+
+				<ul  id="contact-icons">
+				<li></li> 
+				</ul>
+
+				</div>
+
+				<div id="copyright" class="span-12 last">
+				<p>
+				Be the person your dog thinks you are        
+				</p>
+				</div>
+			</div>  
+		</footer>
+	</div>
+</body>
+</html>
