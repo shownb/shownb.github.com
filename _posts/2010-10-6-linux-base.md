@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Linux基础汇总"
 ---
 
