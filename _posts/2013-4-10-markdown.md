@@ -1,6 +1,6 @@
 ---
-layout: default
-title: hello
+layout: post
+title: markdown基本语法
 ---
 
 ##转义字符  
