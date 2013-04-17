@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: markdown基本语法
 ---
 
