@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: "Linux基础汇总"
 ---
 
