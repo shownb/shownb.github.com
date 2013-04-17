@@ -1,0 +1,33 @@
+  	<div id="content" >
+			<section class="container">
+				<!-- Unabridged post content -->
+				<div class="span-12 last">
+				<article class="post">
+				<h2 class="post-title">{{ page.title }}</h2>
+				<div class="post byline">
+				Filed under <a href="/notebook.html?cat=cat-学习">{{ category }}</a> on {{ page.date | date: "%d %b, %Y" }}
+				</div>
+				<div class="post content">
+				{{ content }}    
+				</div>
+				</article>
+
+				<div id="comments">
+				<div id="disqus_thread">
+							<script type="text/javascript">
+							var duoshuoQuery = {short_name:"shownb"};
+							(function() {
+								var ds = document.createElement('script');
+								ds.type = 'text/javascript';ds.async = true;
+								ds.src = 'http://static.duoshuo.com/embed.js';
+								ds.charset = 'UTF-8';
+								(document.getElementsByTagName('head')[0] 
+								|| document.getElementsByTagName('body')[0]).appendChild(ds);
+							})();
+							</script>
+				</div>
+				</div>
+
+				</div>
+			</section>
+	    </div>
