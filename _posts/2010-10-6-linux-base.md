@@ -55,6 +55,9 @@ title: "Linux基础汇总"
 	
 * python -c 'import pty; pty.spawn("/bin/sh")'
 
+* 基础  
+	yes
+
 * 基础操作  
 	增加一个用户  
 	useradd application  
