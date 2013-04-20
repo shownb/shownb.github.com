@@ -97,7 +97,8 @@ title: "Linux基础汇总"
 	glibc是个C库，几乎所有的应用程序都需要共享它提供的功能（除了kernel、bootload、和其它完全不用C库的功能代码），因此glibc的存在有利益小系统或嵌入系统缩减系统总代码尺寸与存放空间（尽管单个的glibc库是比较大的）。所以，最后的工作就是：构造ARM交叉编译系统的glibc库。
 
 * 安装语言包  
-	    sudo apt-get install language-support-zh
+	sudo apt-get install language-support-zh  
+	hello
 
 * .vimrc编写指南  
 	set nocp #该命令指定让 VIM 工作在不兼容模式下  
