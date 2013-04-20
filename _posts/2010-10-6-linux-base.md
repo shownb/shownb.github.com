@@ -55,8 +55,7 @@ title: "Linux基础汇总"
 	
 * python -c 'import pty; pty.spawn("/bin/sh")'
 
-* 基础操作
-
+* .基础操作  
 	增加一个用户  
 	useradd application  
 	passwd // 根据提示设置密码
