@@ -19,9 +19,12 @@ title: "Linux基础汇总"
 
 * find / -type f -perm /u+s -ls
 
-	-perm #按执行权限来查找
-
+	-perm #按执行权限来查找  
 	-type b/d/c/p/l/f #查是块设备、目录、字符设备、管道、符号链接、普通文件
+	
+* find ./ -name ‘*.java’ -exec grep -i “ABCD” {} \; -print 在当前路径不区分大小写查找所有*.java的文件里面含有”ABCD”的内容行，并且print出来文件的路径
+
+* find /web/htdocs -type f -name "*.php" |xargs grep "eval(" > /tmp/test.txt
 
 * Linux kernel 2.6 < 2.6.19 (32bit) ip_append_data() local ring0 root exploit
 
@@ -106,7 +109,19 @@ title: "Linux基础汇总"
 	set backspace=indent,eol,start #字母删除问题  
 	set whichwrap=b,s,<,>,[,] #光标跳转  
 
-* djsljfs
+* linux下使用tar和ssh压缩传输文件
+
+	    ssh username@remoteip "cd /some/path/; tar czf - path" | tar xvzf -#压缩传输
+	    tar cvzf - /path/ | ssh username@remoteip "cd /some/path/; tar xvzf -" #压缩传输一个目录并解压
+
+* ssh sock
+
+	    ssh username@my_host_ip_address -D 7070
+	    ssh -N -L 5555:202.202.202.1:22 admin@101.101.101.1
+	    ssh -N -D 7070 user@localhost -p 555
+	>内网运行：ssh -f -N -R 10000:localhost:22 username@反连的外网ip也就是说，在主控端10000端口和被控端的22端口上建立了一个通道。-R [listen-IP:]listen-port:host:portForward remote port to local address外网ip运行：ssh username@localhost -p 10000
+
+* 未完待续
 
 
 
