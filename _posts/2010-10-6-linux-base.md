@@ -55,8 +55,10 @@ title: "Linux基础汇总"
 	
 * python -c 'import pty; pty.spawn("/bin/sh")'
 
-* 基础  
-	yes
+* python -c 'import pty; pty.spawn("/bin/sh")'
+
+* python -c 'import pty; pty.spawn("/bin/sh")'  
+	jfsljfs
 
 * 基础操作  
 	增加一个用户  
