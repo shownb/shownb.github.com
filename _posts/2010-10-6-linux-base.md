@@ -57,9 +57,9 @@ title: "Linux基础汇总"
 
 * 基础操作
 
- 增加一个用户  
- useradd application  
- passwd // 根据提示设置密码  
+增加一个用户  
+useradd application  
+passwd // 根据提示设置密码  
 	
 * exp
 
