@@ -5,7 +5,7 @@ title: rk3066的hacking
 
 ###android前置知识
 
-* [工具合集] split_bootimg.pl等
+* [工具合集] split_bootimg.pl mkbootimg 等
 
 * android文件系统由很多个分区组成。
 
@@ -22,7 +22,8 @@ title: rk3066的hacking
 	    # mkdir ramdisk  
 	    # cd ramdisk  
 	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i
-
+	合体  
+	    mkbootimg --cmdline 'no_console_suspend=1 console=null' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
 
 * 从[rk3066内核源代码]得到cmdline
 
