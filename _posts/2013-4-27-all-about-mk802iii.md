@@ -5,7 +5,7 @@ title: rk3066的hacking
 
 ###android前置知识
 
-* [工具合集]
+* [工具合集] split_bootimg.pl等
 
 * android文件系统由很多个分区组成。
 
@@ -31,4 +31,4 @@ title: rk3066的hacking
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
-[工具集合]: http://code.google.com/p/zen-droid/downloads/list
+[工具合集]: http://code.google.com/p/zen-droid/downloads/list
