@@ -17,8 +17,8 @@ title: rk3066的hacking
 	分解  
 	    ./split_bootimg.pl boot.img  
 	解压 ramdisk  
-	    # mkdir ramdisk
-	    # cd ramdisk
+	    # mkdir ramdisk  
+	    # cd ramdisk  
 	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i
 
 
