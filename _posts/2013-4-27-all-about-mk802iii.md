@@ -7,7 +7,7 @@ title: rk3066的hacking
 
 * android文件系统由很多个分区组成。
 
- 在adb shell运行如下。cat /proc/mtd一般会显示各个分区的名字大小等。cat /proc/mtd or cat /proc/partitions or dmesg | grep recovery 找出recovery是哪个。  
+	在adb shell运行如下。cat /proc/mtd一般会显示各个分区的名字大小等。cat /proc/mtd or cat /proc/partitions or dmesg | grep recovery 找出recovery是哪个。  
 	ls -l  /dev/block/mtd/by-name/
 
 * cat k03.img > /dev/block/mtdblock3
@@ -21,9 +21,11 @@ title: rk3066的hacking
 	    # cd ramdisk
 	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i
 
+
 * 从[rk3066内核源代码]得到cmdline
 
 * extract-ikconfig
+	CONFIG_CMDLINE="root=/dev/mmcblk0p2 init=/sbin/init loglevel=8 rootfstype=ext4 rootwait
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
