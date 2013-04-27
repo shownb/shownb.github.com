@@ -5,6 +5,8 @@ title: rk3066的hacking
 
 ###android前置知识
 
+* [工具合集]
+
 * android文件系统由很多个分区组成。
 
 	在adb shell运行如下。cat /proc/mtd一般会显示各个分区的名字大小等。cat /proc/mtd or cat /proc/partitions or dmesg | grep recovery 找出recovery是哪个。  
@@ -29,3 +31,4 @@ title: rk3066的hacking
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
+[工具集合]: http://code.google.com/p/zen-droid/downloads/list
