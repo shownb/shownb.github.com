@@ -1,8 +1,7 @@
 ---
 layout: post
-title: rk3306的hacking
+title: rk3066的hacking
 ---
-
 
 ###android前置知识
 
@@ -23,3 +22,8 @@ title: rk3306的hacking
      # cd ramdisk
      # gzip -dc ../boot.img-ramdisk.gz | cpio -i
 
+* 从[rk3066内核源代码]得到cmdline
+
+
+[如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
+[rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
