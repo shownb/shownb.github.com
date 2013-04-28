@@ -1,7 +1,9 @@
----
-layout: page
-title: myblog
----
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>神秘人</title>
+</head>
 　　<h2>{{ page.title }}</h2>
 　　<p>最新文章</p>
 　　<ul>
@@ -9,4 +11,4 @@ title: myblog
 　　　　　　<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 　　　　{% endfor %}
 　　</ul>
-
+</html>
