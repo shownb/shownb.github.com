@@ -3,6 +3,17 @@ layout: post
 title: rk3066的hacking
 ---
 
+###android boot.img的结构
+
+boot.img这个分区格式是android自己定制的。它主要分成3或者4大块。  
+由header,kernel,ramdisk,second stage组成  
+header包含了各个段的解压出来后存放的地址，和各个段的大小等信息。其中包括cmdline 地址tags_addr (对应这Linux的PARAMS_PHYS)  
+kernel和ramdisk就不用啰嗦了。详细的分析见 [定制我的Nexus系统之boot.img的前世今生]  
+我个人看完的总结是:android机器 bootloader负责把boot.img的东西加载到ddr，按照的是boot-header的地址和内容。cmdline这个内核参数被复制到内存制定位置，然后kernel通过bootloader传递过来的一个指针可以获取到。  
+具体就是bootloader根据boot header安排好内存地址，然后开始kernel(<--cmdline),然后......  
+pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，是传给内核的参数。由各种boot loader （grub ，lilo， pxeloader 等）负责复制到内存指定位置，然后linux内核通过boot loader传递过来的 一个指针（cmdline pointer）可以获取到。然后建立起/proc/cmdline文件，应用程序可以通过读取这个文件来得到参数。  
+
+
 ###android前置知识
 
 * [工具合集] split_bootimg.pl mkbootimg 等
@@ -33,3 +44,4 @@ title: rk3066的hacking
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
 [工具合集]: http://code.google.com/p/zen-droid/downloads/list
+[定制我的Nexus系统之boot.img的前世今生]: http://blog.csdn.net/ttxgz/article/details/7742696
