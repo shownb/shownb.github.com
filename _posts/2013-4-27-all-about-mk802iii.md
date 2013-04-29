@@ -41,10 +41,11 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 * extract-ikconfig
 	CONFIG_CMDLINE="root=/dev/mmcblk0p2 init=/sbin/init loglevel=8 rootfstype=ext4 rootwait
 
-* 开启adb wifi  
-     setprop service.adb.tcp.port 8000  
-     stop adbd  
-     start adbd
+* 开启adb wifi
+
+	    setprop service.adb.tcp.port 8000  
+	    stop adbd  
+	    start adbd
 
 * 
 
