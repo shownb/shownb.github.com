@@ -41,7 +41,15 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 * extract-ikconfig
 	CONFIG_CMDLINE="root=/dev/mmcblk0p2 init=/sbin/init loglevel=8 rootfstype=ext4 rootwait
 
+* 开启adb wifi  
+	    setprop service.adb.tcp.port 8000  
+	    stop adbd  
+	    start adbd
+
+* 
+
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
 [工具合集]: http://code.google.com/p/zen-droid/downloads/list
 [定制我的Nexus系统之boot.img的前世今生]: http://blog.csdn.net/ttxgz/article/details/7742696
+[linux下的rk3066 adb]: http://www.rikomagic.co.uk/forum/viewtopic.php?f=9&t=4080
