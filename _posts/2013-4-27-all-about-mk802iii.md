@@ -37,7 +37,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 
 	合体
 
-	    mkbootimg --cmdline 'no_console_suspend=1 console=null' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
+	    mkbootimg --cmdline 'console=tty0 no_console_suspend=1 root=/dev/mmcblk0p2 rootdelay=2' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
 
 * 从[rk3066内核源代码]得到cmdline
 
