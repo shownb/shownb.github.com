@@ -32,7 +32,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	解压 ramdisk  
 	    # mkdir ramdisk  
 	    # cd ramdisk  
-	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i
+	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i  
 	合体  
 	    mkbootimg --cmdline 'no_console_suspend=1 console=null' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
 
@@ -47,7 +47,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	    stop adbd  
 	    start adbd
 
-* 刷入recovery.img遇到的问题
+* 刷入recovery.img遇到的问题  
 	正常来说，按照这个方法可以刷入recovery.img到/dev/block/mtdblock3  
 	    busybox dd if=/sdcard/recovery.img of=/dev/block/mtd/by-name/recovery bs=8192  
 	但我无论怎么刷都刷不进，包括先刷/dev/zero,生成和recovery分区一样大小的文件。  
