@@ -58,6 +58,10 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	但我无论怎么刷都刷不进，包括先刷/dev/zero,生成和recovery分区一样大小的文件。  
 	我是按照下列来解决的。按照刷[cwm for Rockchip]的中的from root shell方法，是使用了它里面的flash_image文件
 
+* u-boot cmdline 等  
+	uboot引导linux的参数都是写在flash上的，具体哪个地址看uboot的CFG_ENV_ADDR，具体格式uboot下有个setup.h文件  
+	boot bootargs
+
 
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
