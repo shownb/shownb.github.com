@@ -16,7 +16,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 
 ###android前置知识
 
-* [工具合集] split_bootimg.pl mkbootimg 等
+* [工具合集] split_bootimg.pl mkbootimg 等 带base显示的下载地址 https://gist.github.com/oldhu/1832541/raw/80c6fdb425a1c1357a25d7ebe1987863c6f4cf81/split_bootimg.pl
 
 * android文件系统由很多个分区组成。
 
@@ -43,7 +43,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 
 	合体
 
-	    mkbootimg --cmdline 'console=tty0 no_console_suspend=1 root=/dev/mmcblk0p2 rootdelay=2' --kernel boot.img-kernel --ramdisk ramdisk-new.gz --base 0x20000000 -o boot-new.img
+	    mkbootimg --cmdline 'console=tty0 no_console_suspend=1 root=/dev/mmcblk0p2 rootdelay=2' --kernel boot.img-kernel --ramdisk ramdisk-new.gz --base 0x60087f00 -o boot-new.img
 
 	其中base地址的确认方法为kernel_addr - 0x00008000,因为物理地址的形式如下：
 
