@@ -23,16 +23,18 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	在adb shell运行如下。cat /proc/mtd一般会显示各个分区的名字大小等。cat /proc/mtd or cat /proc/partitions or dmesg | grep recovery 找出recovery是哪个。  
 	ls -l  /dev/block/mtd/by-name/
 
-* cat k03.img > /dev/block/mtdblock3
-
 * boot和recovery映像的文件结构
 	boot和recovery映像并不是一个完整的文件系统，它们是一种android自定义的文件格式，该格式包括了2K的文件头，后面紧跟着是用gzip压缩过的内核，再后面是一个ramdisk内存盘  
-	分解  
-	    ./split_bootimg.pl boot.img  
-	解压 ramdisk  
+	分解
+
+	    ./split_bootimg.pl boot.img
+
+	解压 ramdisk
+
 	    # mkdir ramdisk  
 	    # cd ramdisk  
-	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i  
+	    # gzip -dc ../boot.img-ramdisk.gz | cpio -i
+
 	合体  
 	    mkbootimg --cmdline 'no_console_suspend=1 console=null' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
 
@@ -48,8 +50,10 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	    start adbd
 
 * 刷入recovery.img遇到的问题  
-	正常来说，按照这个方法可以刷入recovery.img到/dev/block/mtdblock3  
-	    busybox dd if=/sdcard/recovery.img of=/dev/block/mtd/by-name/recovery bs=8192  
+	正常来说，按照这个方法可以刷入recovery.img到/dev/block/mtdblock3
+
+	    busybox dd if=/sdcard/recovery.img of=/dev/block/mtd/by-name/recovery bs=8192
+
 	但我无论怎么刷都刷不进，包括先刷/dev/zero,生成和recovery分区一样大小的文件。  
 	我是按照下列来解决的。按照刷[cwm for Rockchip]的中的from root shell方法，是使用了它里面的flash_image文件
 
