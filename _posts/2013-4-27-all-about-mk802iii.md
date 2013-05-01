@@ -43,7 +43,15 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 
 	合体
 
-	    mkbootimg --cmdline 'console=tty0 no_console_suspend=1 root=/dev/mmcblk0p2 rootdelay=2' --kernel boot.img-kernel --ramdisk ramdisk-new.gz -o boot-new.img
+	    mkbootimg --cmdline 'console=tty0 no_console_suspend=1 root=/dev/mmcblk0p2 rootdelay=2' --kernel boot.img-kernel --ramdisk ramdisk-new.gz --base 0x20000000 -o boot-new.img
+
+	其中base地址的确认方法为kernel_addr - 0x00008000,因为物理地址的形式如下：
+
+	    hdr.kernel_addr =  base + 0x00008000;
+	    hdr.ramdisk_addr = base + 0x01000000;
+	    hdr.second_addr =  base + 0x00F00000;
+	    hdr.tags_addr =    base + 0x00000100;
+
 
 * 从[rk3066内核源代码]得到cmdline
 
