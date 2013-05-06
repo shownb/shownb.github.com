@@ -5,6 +5,9 @@ title: "Linux基础汇总"
 
 ## Linux基础汇总
 
+* console tty等
+
+	/dev/console是系统控制台，是与操作系统交互的设备。系统所产生的信息会发送到该设备上。平时我们看到的PC只有一个屏幕和键盘，它其实就是控制台。，而/dev/tty指用电缆链接的其它位置的控制台。
 
 * suid/guid
 
