@@ -76,6 +76,15 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	uboot引导linux的参数都是写在flash上的，具体哪个地址看uboot的CFG_ENV_ADDR，具体格式uboot下有个setup.h文件  
 	boot bootargs
 
+* urat 
+https://dl.dropboxusercontent.com/u/144135671/images/IMG_13441.jpg
+
+	*Green = Ground  
+	*Blue = Serial TxD  
+	*Red = Serial RxD  
+	*White = No signal  
+	*Yellow = 3.3V  
+	*Magenta = 2.5V   
 
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
