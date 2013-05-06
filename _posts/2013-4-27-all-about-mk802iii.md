@@ -78,7 +78,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 
 * urat 
 
-![串口图](http://dl.19cn.com/u/144135671/images/IMG_13441.jpg)
+	图片在 http://dl.19cn.com/u/144135671/images/IMG_13441.jpg
 
 	* Green = Ground  
 	* Blue = Serial TxD  
