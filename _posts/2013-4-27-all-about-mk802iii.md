@@ -77,14 +77,15 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	boot bootargs
 
 * urat 
-https://dl.dropboxusercontent.com/u/144135671/images/IMG_13441.jpg
 
-	*Green = Ground  
-	*Blue = Serial TxD  
-	*Red = Serial RxD  
-	*White = No signal  
-	*Yellow = 3.3V  
-	*Magenta = 2.5V   
+![串口图](http://dl.19cn.com/u/144135671/images/IMG_13441.jpg)
+
+	* Green = Ground  
+	* Blue = Serial TxD  
+	* Red = Serial RxD  
+	* White = No signal  
+	* Yellow = 3.3V  
+	* Magenta = 2.5V   
 
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
