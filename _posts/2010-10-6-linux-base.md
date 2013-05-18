@@ -118,7 +118,7 @@ title: "Linux基础汇总"
 	    ssh -N -D 7070 user@localhost -p 555
 	>内网运行：ssh -f -N -R 10000:localhost:22 username@反连的外网ip也就是说，在主控端10000端口和被控端的22端口上建立了一个通道。-R [listen-IP:]listen-port:host:portForward remote port to local address外网ip运行：ssh username@localhost -p 10000
 
-* 未完待续
+* 文件/proc/partitions 可以查看分区信息
 
 * 中文
 
