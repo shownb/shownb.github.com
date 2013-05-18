@@ -87,6 +87,11 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	* Yellow = 3.3V  
 	* Magenta = 2.5V   
 
+* mount ext4的移动硬盘或sd卡
+	cat /proc/partitions  
+	mount -t ext4 /dev/block/vold/179:1 /mnt/usbhdd
+
+
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
