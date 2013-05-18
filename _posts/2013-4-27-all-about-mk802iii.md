@@ -92,7 +92,10 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	cat /proc/partitions  
 	mount -t ext4 /dev/block/vold/179:1 /mnt/usbhdd
 
+* kernel代码另一位改造者
 
+	[olegk0的内核] 还有相关资源下载 https://docs.google.com/folder/d/0B6QRwjacGTzCX0UyOXNGSU5iMGc/edit?pli=1
+	
 
 [如何解包／编辑／打包boot.img文件]: http://www.cnblogs.com/shenhaocn/archive/2010/05/25/1743704.html
 [rk3066内核源代码]: https://github.com/AndrewDB/rk3066-kernel
@@ -100,3 +103,4 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 [定制我的Nexus系统之boot.img的前世今生]: http://blog.csdn.net/ttxgz/article/details/7742696
 [linux下的rk3066 adb]: http://www.rikomagic.co.uk/forum/viewtopic.php?f=9&t=4080
 [cwm for Rockchip]: http://androtab.info/clockworkmod/rockchip/install/
+[olegk0的内核]: https://github.com/olegk0/rk3066-kernel
