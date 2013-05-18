@@ -88,6 +88,7 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 	* Magenta = 2.5V   
 
 * mount ext4的移动硬盘或sd卡
+
 	cat /proc/partitions  
 	mount -t ext4 /dev/block/vold/179:1 /mnt/usbhdd
 
