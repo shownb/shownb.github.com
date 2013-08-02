@@ -13,6 +13,6 @@ title: sqlmap tips
 --risk  共有四个风险等级，默认是1会测试大部分的测试语句，2会增加基于事件的测试语句，3会增加OR语句的SQL注入测试。
 --dbs 列出数据库  
 --columns,-C,-T,-D
---file-read 读文件如--file-read "/etc/passwd"
+--file-read 读文件如--file-read "/etc/passwd"  
 上传文件 --file-write "本地文件" --file-dest "目标机器目录"  
 --flush-session #刷新当前目标的会话文件,重新注入  
