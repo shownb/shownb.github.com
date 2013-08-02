@@ -16,3 +16,12 @@ title: tipsofsqlmaps
 --file-read 读文件如--file-read "/etc/passwd"  
 上传文件 --file-write "本地文件" --file-dest "目标机器目录"  
 --flush-session #刷新当前目标的会话文件,重新注入  
+-v #详细的等级(0-6)  
+0：只显示Python的回溯，错误和关键消息。  
+1：显示信息和警告消息。  
+2：显示调试消息。  
+3：有效载荷注入。  
+4：显示HTTP请求。  
+5：显示HTTP响应头。  
+6：显示HTTP响应页面的内容  
+-p "user-agent" --user-agent "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)" #指定user-agent注入
