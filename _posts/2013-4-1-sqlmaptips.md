@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sqlmap tips
+title: tipsofsqlmaps
 ---
 
 --current-db 当前数据库
