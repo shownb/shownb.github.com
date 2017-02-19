@@ -1,14 +1,17 @@
 <video width=800 height=600 controls id=videoPlayer></video>
+
 <br>
 <button data-file=http://live-lh.daserste.de/i/daserste_de@91204/index_2692_av-p.m3u8?sd=10&rebase=on>erste</button>
 <button data-file=http://kika_geo-lh.akamaihd.net/i/livetvkika_de@75114/index_3776_av-p.m3u8>kika</button>
-<button data-file=http://zdf0910-lh.akamaihd.net/i/de09_v1@392871/index_1456_av-b.m3u8?sd=10&rebase=on>Phoenix</button>
-<button data-file=http://zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1456_av-p.m3u8?sd=10&rebase=on>3sat</button>
+<button data-file=http://zdf0910-lh.akamaihd.net/i/de09_v1@392871/index_1496_av-p.m3u8?sd=10&rebase=on>Phoenix</button>
+<button data-file=http://zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1496_av-p.m3u8?sd=10&rebase=on>3sat</button>
 <button data-file=http://livestreams.br.de/i/bralpha_germany@119899/index_3776_av-b.m3u8?sd=10&rebase=on>ARD-ALPHA</button>
 <button data-file=http://artelive-lh.akamaihd.net/i/artelive_de@393591/index_2_av-b.m3u8?sd=10&rebase=on>ARTE DEUTSCH</button>
 <button data-file=http://dwstream72-lh.akamaihd.net/i/dwstream72_live@123556/master.m3u8>dw</button>
 
 <script>
+
+	document.fullscreenElement;
 	/* use global variable for ease */
 	var v = document.getElementById('videoPlayer');
 	/* grab all buttons and attach click events */
