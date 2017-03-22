@@ -1,0 +1,17 @@
+<html>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/w')" style="width:120px;height:40px;font-size:20px;">&uarr;&uarr;&uarr;</button><br><br>
+<button onclick="ajax('http://192.168.4.1/cmd/a')" style="width:90px;height:40px;font-size:20px;">&larr;&larr;</button>&nbsp;&nbsp;&nbsp;
+<button onclick="ajax('http://192.168.4.1/cmd/d')" style="width:90px;height:40px;font-size:20px;">&rarr;&rarr;</button><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/s')" style="width:120px;height:40px;font-size:20px;">stop</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:100px;height:40px;font-size:20px;">speedup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:100px;height:40px;font-size:20px;">slowdown</button>
+<br><br><br>
+
+</html>
+<script type="text/javascript">
+    function ajax(url)
+    {
+    	var oReq = new XMLHttpRequest();
+    	oReq.open('POST',url,true);
+    	oReq.send();
+    }
+</script>
