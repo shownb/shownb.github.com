@@ -1,29 +1,30 @@
 <html>
-<table border="1">
+<table>
 	<tr>
 		<th></th>
 		<th>controler</th>
 		<th></th>
-	</tr>
-	<tr>
-		<td></td>
-		<td><button onclick="ajax('http://192.168.4.1/cmd/w')" style="width:200px;height:200px;font-size:40px;">&uarr;&uarr;&uarr;</button></td>
 		<th></th>
 	</tr>
 	<tr>
-		<td><button onclick="ajax('http://192.168.4.1/cmd/a')" style="width:200px;height:200px;font-size:40px;">&larr;&larr;</button></td>
 		<td></td>
-		<th><button onclick="ajax('http://192.168.4.1/cmd/d')" style="width:200px;height:200px;font-size:40px;">&rarr;&rarr;</button></th>
+		<td><button onclick="ajax('http://192.168.4.1/cmd/w')" style="width:160px;height:160px;font-size:40px;">&uarr;&uarr;&uarr;</button></td>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr>
+		<td><button onclick="ajax('http://192.168.4.1/cmd/a')" style="width:160px;height:160px;font-size:40px;">&larr;&larr;</button></td>
+		<td></td>
+		<th><button onclick="ajax('http://192.168.4.1/cmd/d')" style="width:160px;height:160px;font-size:40px;">&rarr;&rarr;</button></th>
+		<th></th>
 	</tr>
 	<tr>
 		<td></td>
-		<td><button onclick="ajax('http://192.168.4.1/cmd/s')" style="width:200px;height:200px;font-size:40px;">stop</button></td>
+		<td><button onclick="ajax('http://192.168.4.1/cmd/s')" style="width:160px;height:160px;font-size:40px;">stop</button></td>
 		<th></th>
+		<th><button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:160px;height:100px;font-size:40px;">speedup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:160px;height:100px;font-size:40px;">slowdown</button></th>
 	</tr>
 </table>
-
-<button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:100px;height:40px;font-size:20px;">speedup</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="ajax('http://192.168.4.1/cmd/z')" style="width:100px;height:40px;font-size:20px;">slowdown</button>
-<br><br><br>
 
 </html>
 <script type="text/javascript">
