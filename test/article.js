@@ -18,8 +18,8 @@ if ((xhr.status >= 200 && xhr.status <300) || xhr.status == 304) {
         gettime = data.updated_at.slice(0, -1).split("T");
 
     title.innerHTML = data.title + " - 杨洽的博客"
-    content.innerHTML = "<h1>" + data.title + "</h1>" + "<p>" + md.render(data.body) + "</p>";
-document.getElementById("issuecontent").value=data.body;
+    //content.innerHTML = "<h1>" + data.title + "</h1>" + "<p>" + md.render(data.body) + "</p>";
+content.innerHTML =data.body;
     time.innerHTML = "Updated at " + gettime[0];
     comment.setAttribute("href", "https://github.com/shownb/shownb.github.com/issues/" + number + "#new_comment_field");
 } else {
