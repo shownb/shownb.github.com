@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest(),
     token = "bc0b0184bb2d44320cd211ce9fb86530dc5af676",
     n = getQueryStringArgs(),
     number = n["number"] ? n["number"] : 1,
-    url = "https://api.github.com/repos/xilesun/blog/issues/";
+    url = "https://api.github.com/repos/shownb/shownb.github.com/issues/";
 
 var md = window.markdownit();
 
