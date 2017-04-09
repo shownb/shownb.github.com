@@ -4,7 +4,6 @@ var xhr = new XMLHttpRequest(),
     number = n["number"] ? n["number"] : 1,
     url = "https://api.github.com/repos/shownb/shownb.github.com/issues/";
 
-var md = window.markdownit();
 
 xhr.open("get", url + number , false);
 xhr.send({ access_token: token });
