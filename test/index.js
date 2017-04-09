@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest(),
-    token = "bc0b0184bb2d44320cd211ce9fb86530dc5af676",
+    token = "927478611fb91e595e0a09e0c4b6f620e54bc53e",
     pageN = getQueryStringArgs(),
     page = pageN["page"] ? pageN["page"] : 1,
     url = "https://api.github.com/repos/shownb/shownb.github.com/issues?page="
