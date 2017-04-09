@@ -20,7 +20,7 @@ if ((xhr.status >= 200 && xhr.status <300) || xhr.status == 304) {
     title.innerHTML = data.title + " - 杨洽的博客"
     content.innerHTML = "<h1>" + data.title + "</h1>" + "<p>" + md.render(data.body) + "</p>";
     time.innerHTML = "Updated at " + gettime[0];
-    comment.setAttribute("href", "https://github.com/xilesun/blog/issues/" + number + "#new_comment_field");
+    comment.setAttribute("href", "https://github.com/shownb/shownb.github.com/issues/" + number + "#new_comment_field");
 } else {
 	console.log(xhr.status);
 } 
