@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest(),
     token = "bc0b0184bb2d44320cd211ce9fb86530dc5af676",
     pageN = getQueryStringArgs(),
     page = pageN["page"] ? pageN["page"] : 1,
-    url = "https://api.github.com/repos/xilesun/blog/issues?page="
+    url = "https://api.github.com/repos/shownb/shownb.github.com/issues?page="
 
 xhr.open("get", url + page , false);
 xhr.send({ access_token: token });
