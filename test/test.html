@@ -8,8 +8,20 @@
 <body>
   <div id="content"></div>
   <script>
+    var xhr = new XMLHttpRequest(),
+    token = "bc0b0184bb2d44320cd211ce9fb86530dc5af676",
+    number = 1,
+    url = "https://api.github.com/repos/shownb/shownb.github.com/issues/";
+
+xhr.open("get", url + number , false);
+xhr.send({ access_token: token });
+if ((xhr.status >= 200 && xhr.status <300) || xhr.status == 304) {
+	var data = JSON.parse(xhr.responseText);
+} else {
+	console.log(xhr.status);
+} 
     document.getElementById('content').innerHTML =
-      marked('# Marked in browser\n\nRendered by **marked**.');
+      marked(data.body);
   </script>
 </body>
 </html>
