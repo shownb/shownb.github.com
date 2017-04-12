@@ -1,68 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" class="loading">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="google" content="notranslate">
-<link rel="icon" href="favicon.png">
-<title> Loading... </title>
-<script>
+<meta charset="utf-8"/>
+<title>thank you</title>
 
-/*
-**
-** blog config here
-** token should be separated by '#'. example: 5#c31bffc137f44faf7efc4a84da827g7ca2cfeaa
-** example: 
-** window.config = {"title":"rorriM","user":"acyortjs","repo":"acyortjs.github.io","token":"927478611fb91e595e0a09e0c4b6f620e54bc53e","authors":"LoeiFy,User0","per_page":1,"sandbox":false}
-**
-*/
+<link rel='stylesheet' href='css/style.css' type='text/css'/>
 
-window.config = {"title":"神秘人的博客","user":"shownb","repo":"shownb.github.com","token":"","authors":"神秘人","per_page":"5","sandbox":"false"}
-
-</script>
-
-<style>html.loading{height:100%;text-align:center}html.loading body{height:100%}html.loading body:before{content:'';width:30px;height:30px;-webkit-border-radius:30px;border-radius:30px;-webkit-animation:loading 1.5s linear forwards infinite;animation:loading 1.5s linear forwards infinite;display:inline-block;border-top:4px solid #0089fa;border-right:4px solid #ff002b;border-bottom:4px solid #ffa900;border-left:4px solid #00a753;vertical-align:middle}html.loading body:after{content:'';display:inline-block;height:100%;vertical-align:middle}html.loading .container{display:none}@keyframes loading{100%{transform:rotate(360deg)}}@-webkit-keyframes loading{100%{-webkit-transform:rotate(360deg)}}</style>
 </head>
-
 <body>
+<div id="header"><h1><a href="#/" class="blog_title">issue博客</a></h1>
+</div>
+<div id="container">
+    <center><a href="javascript:index(1)">index(1)</a><a href="javascript:getDetail(1)">getDetail(1)</a></center>
+</div>
 
-    <div class="container">
-
-        <div class="left">
-            <div id="user"></div>
-            <div id="posts"></div>
-            <div class="btns">
-                <button class="button" id="prev">← Newer Posts</button>
-                <button class="button" id="next">Older Posts →</button>
-            </div>
-
-            <div id="footer">
-                Powered by <a href="https://github.com/LoeiFy/Mirror" target="_blank">Mirror</a> & GitHub .
-                <a id="source" target="_blank">Source</a>
-                <span id="sandbox"> | <a>SandBox</a></span>
-            </div>
-
-            <div class="sandbox">
-                <div id="close">&#x2716;</div>
-                <form id="form" autocomplete="off">
-                    <p>Submit the imformation and preview</p>
-                    <input type="text" name="title" placeholder="Blog Title">
-                    <input type="text" name="user" placeholder="GitHub Username">
-                    <input type="text" name="repo" placeholder="GitHub Repo">
-                    <input type="text" name="authors" placeholder="Authors Filter(Optional)">
-                    <input type="number" name="per_page" placeholder="Number of Per Page">
-                    <button type="submit" name="submit" class="button">Start</button>
-                </form>
-            </div>
-        </div>
-
-
-        <div class="right">
-            <div id="post"></div>
-        </div>
-
-    </div>
-
-<script type="text/javascript" src="index.js"></script></body>
-
+<script src="app.js"></script>
+</body>
 </html>
