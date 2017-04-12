@@ -3,7 +3,7 @@ var _config = {
     owner           : 'shownb',
     repo            : 'shownb.github.com',
     access_token : '927478611fb91e595e0a09e0c4b6f620e54bc53e',
-    per_page        : '15'
+    per_page        : '7'
 }
 
 
@@ -63,13 +63,13 @@ function index(page){
 			url:"https://api.github.com/repos/"+_config['owner']+"/"+_config['repo']+"/issues",
 			type:'GET',
 			data:{page:page,per_page:_config['per_page']},
-			async:false,
+			async:true,
 			headers:{Accept:"application/vnd.github.v3.html"},
 			success:function (response,responsejson,a) {
 				window._G.postList[page]="";
 				for (i in responsejson){
-					window._G.postList[page]=window._G.postList[page]+'<li class="postlist"><a href="#post/'+responsejson[i].number+'">'+responsejson[i].title+'</a><span class="datetime">'+responsejson[i].created_at+'</span></li>';
-
+					//window._G.postList[page]=window._G.postList[page]+'<li class="postlist"><a href="#post/'+responsejson[i].number+'">'+responsejson[i].title+'</a><span class="datetime">'+responsejson[i].created_at+'</span></li>';
+                    window._G.postList[page]=window._G.postList[page]+'<li><span class="post-meta">'+responsejson[i].created_at+'</span><h2><a class="post-link" href="#post/'+responsejson[i].number+'">'+responsejson[i].title+'</a></h2></li>';
 					window._G.post[responsejson[i].number]={};
 					window._G.post[responsejson[i].number].body_html=responsejson[i].body_html;
 					window._G.post[responsejson[i].number].title=responsejson[i].title;
@@ -79,10 +79,10 @@ function index(page){
 				var link = a.getResponseHeader("Link") || "";
 				var showPages="";
 				if(link.indexOf('rel="prev"') > 0){
-					showPages = showPages+'<a href="#page/'+(page-1)+'" class="prev">上一页</a>';
+					showPages = showPages+'<a href="#page/'+(page-1)+'">上一页</a>';
 				}
 				if(link.indexOf('rel="next"') > 0){
-					showPages = showPages+'<a href="#page/'+(page+1)+'" class="next">下一页</a>';
+					showPages = showPages+'<a href="#page/'+(page+1)+'">下一页</a>';
 				}
 				_G.postList[page]=_G.postList[page]+showPages;
 				document.getElementById('container').innerHTML=_G.postList[page];
@@ -107,7 +107,7 @@ ajax({
     type:'GET',
     //data:{name:'helloworld',age :'23'},
     dataType:"json",
-    async:false,
+    async:true,
     headers:{Accept:"application/vnd.github.v3.html"},
     success:function (response,responsejson) {
     	document.getElementById('container').innerHTML='<h1>'+responsejson.title+'</h1><span class="create_at">发表于 '+responsejson.created_at+'</span>'+responsejson.body_html;
