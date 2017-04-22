@@ -74,6 +74,7 @@ function index(page){
 					window._G.post[responsejson[i].number].body_html=responsejson[i].body_html;
 					window._G.post[responsejson[i].number].title=responsejson[i].title;
 					window._G.post[responsejson[i].number].created_at=responsejson[i].created_at;
+                    window._G.post[responsejson[i].number].html_url=responsejson[i].html_url;
 				};
 				document.getElementById('container').innerHTML=_G.postList[page];
 				var link = a.getResponseHeader("Link") || "";
@@ -98,7 +99,7 @@ function getDetail(id){
 		window._G.post[id] = {};  
 	}
     if(_G.post[id].body_html != undefined){
-		document.getElementById('container').innerHTML='<h1>'+_G.post[id].title+'</h1><span class="create_at">发表于 '+_G.post[id].created_at+'</span>'+_G.post[id].body_html;
+		document.getElementById('container').innerHTML='<h1>'+_G.post[id].title+'</h1><span class="create_at">发表于 <a href="'+_G.post[id].html_url+'">'+_G.post[id].created_at+'</a></span>'+_G.post[id].body_html+'<br><br><a href="'+_G.post[id].html_url+'">评论</a>';
 		return;
 	}
 
@@ -110,7 +111,7 @@ ajax({
     async:true,
     headers:{Accept:"application/vnd.github.v3.html"},
     success:function (response,responsejson) {
-    	document.getElementById('container').innerHTML='<h1>'+responsejson.title+'</h1><span class="create_at">发表于 '+responsejson.created_at+'</span>'+responsejson.body_html;
+    	document.getElementById('container').innerHTML='<h1>'+responsejson.title+'</h1><span class="create_at">发表于 <a href="'+responsejson.html_url+'">'+responsejson.created_at+'</a></span>'+responsejson.body_html+'<br><br><a href="'+responsejson.html_url+'">评论</a>';
     },
     fail:function (status) {
         console.log('状态码为'+status);
