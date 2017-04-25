@@ -68,7 +68,6 @@ function index(page){
 			success:function (response,responsejson,a) {
 				window._G.postList[page]="";
 				for (i in responsejson){
-					//window._G.postList[page]=window._G.postList[page]+'<li class="postlist"><a href="#post/'+responsejson[i].number+'">'+responsejson[i].title+'</a><span class="datetime">'+responsejson[i].created_at+'</span></li>';
                     window._G.postList[page]=window._G.postList[page]+'<li><span class="post-meta">'+responsejson[i].created_at+'</span><h2><a class="post-link" href="#post/'+responsejson[i].number+'">'+responsejson[i].title+'</a></h2></li>';
 					window._G.post[responsejson[i].number]={};
 					window._G.post[responsejson[i].number].body_html=responsejson[i].body_html;
@@ -121,41 +120,23 @@ ajax({
 
 };
 
-var util = {
-    //获取路由的路径和详细参数
-    getParamsUrl:function(){
-    	var hashName = location.hash.split("#")[1];
-    	if (hashName != undefined)
-    	{
-    		var action=hashName.split("/")[0],
-    		item=hashName.split("/")[1];
-    		return {action:action,item:item};
-    	}
-    	else
-    	{
-    		return {action:'home',item:'null'};
-    	}
-        
-    }
-}
-
 var route={
-	"post":function(id){getDetail(id);},
-	"page":function(page){index(page)},
-	"home":function(){index(1)},
-	"":function(){index(1)}
+"post":getDetail,
+"page":index,
+"home":index,
+"":index
 }
 
-window.addEventListener('load',function(){
-	var currentHash = util.getParamsUrl();
-	route[currentHash.action](currentHash.item);
-})
 
-//路由切换
-window.addEventListener('hashchange',function(){
-	var currentHash = util.getParamsUrl();
-	route[currentHash.action](currentHash.item);
-})
+function routeinit() {
+    var hashName = location.hash.split("#")[1];
+    hashName = hashName || "/";
+    route[hashName.split("/")[0]](hashName.split("/")[1]);
+}
+
+
+window.addEventListener('load',routeinit)
+window.addEventListener('hashchange',routeinit)
 
 
 
