@@ -1,5 +1,6 @@
 from http://www.jslink.org/linux/apnic-ip.html
 
+```bash
 #!/bin/sh  
 FILE=ip_apnic   
 rm -f $FILE   
@@ -17,3 +18,4 @@ do
     echo $ip/$mask 
     echo $ip/$mask>> cn.net  
 done  
+```
