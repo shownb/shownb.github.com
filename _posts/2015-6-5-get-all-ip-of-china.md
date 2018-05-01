@@ -1,6 +1,6 @@
 from http://www.jslink.org/linux/apnic-ip.html
 
-```bash
+```shell
 #!/bin/sh  
 FILE=ip_apnic   
 rm -f $FILE   
