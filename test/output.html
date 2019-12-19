@@ -33,42 +33,205 @@
 <main class="page-content" aria-label="Content">
 	<div class="wrapper">
 		<ul class="post-list" id="container">
-			<p>word_to_word</p>
-<p><a href="http://www.abc.com">http://www.abc.com</a></p>
-<p><del>wrong text.</del></p>
-<pre><code>void hello()
-{
-    print(&quot;hello&quot;)
+<h2>Down</h2>
+<p><a href="https://travis-ci.org/iwasrobbed/Down"><img src="https://travis-ci.org/iwasrobbed/Down.svg?branch=master" alt="Build Status" /></a>
+<a href="https://github.com/iwasrobbed/Down/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT licensed" /></a>
+<a href=""><img src="https://img.shields.io/cocoapods/v/Down.svg?maxAge=10800" alt="CocoaPods" /></a>
+<a href="https://swift.org"><img src="https://img.shields.io/badge/language-Swift-blue.svg" alt="Swift 4" /></a>
+<a href="https://developer.apple.com/macos/"><img src="https://img.shields.io/badge/OS-macOS-orange.svg" alt="macOS" /></a>
+<a href="https://developer.apple.com/ios/"><img src="https://img.shields.io/badge/OS-iOS-orange.svg" alt="iOS" /></a>
+<a href="https://developer.apple.com/tvos/"><img src="https://img.shields.io/badge/OS-tvOS-orange.svg" alt="tvOS" /></a>
+<a href="https://coveralls.io/github/iwasrobbed/Down?branch=master"><img src="https://coveralls.io/repos/github/iwasrobbed/Down/badge.svg?branch=master" alt="Coverage Status" /></a></p>
+<p>Blazing fast Markdown (CommonMark) rendering in Swift, built upon <a href="https://github.com/commonmark/cmark">cmark v0.28.3</a>.</p>
+<p>Is your app using it? <a href="mailto:rob@robphillips.me">Let us know!</a></p>
+<h4>Maintainers</h4>
+<ul>
+<li><a href="https://github.com/iwasrobbed">Rob Phillips</a></li>
+<li><a href="https://github.com/johnxnguyen">John Nguyen</a></li>
+<li><a href="https://github.com/128keaton">Keaton Burleson</a></li>
+<li><a href="https://github.com/phoney">phoney</a></li>
+<li><a href="https://github.com/tonyarnold">Tony Arnold</a></li>
+<li><a href="https://github.com/kengruven">Ken Harris</a></li>
+<li><a href="https://github.com/chriszielinski">Chris Zielinski</a></li>
+<li><a href="https://github.com/iwasrobbed/Down/graphs/contributors">Other contributors</a> 🙌</li>
+</ul>
+<h3>Installation</h3>
+<p>Note: Swift 4 support is now on the <code>master</code> branch and any tag &gt;= 0.4.x (Swift 3 is 0.3.x)</p>
+<p>Quickly install using <a href="https://cocoapods.org">CocoaPods</a>:</p>
+<pre><code class="language-ruby">pod 'Down'
+</code></pre>
+<p>Or <a href="https://github.com/Carthage/Carthage">Carthage</a>:</p>
+<pre><code>github &quot;iwasrobbed/Down&quot;
+</code></pre>
+<p>Due to limitations in Carthage regarding platform specification, you need to define the platform with Carthage.</p>
+<p>e.g.</p>
+<p><code>carthage update --platform iOS</code></p>
+<p>Or manually install:</p>
+<ol>
+<li>Clone this repository</li>
+<li>Build the Down project</li>
+<li>Add the resulting framework file to your project</li>
+<li>?</li>
+<li>Profit</li>
+</ol>
+<h3>Robust Performance</h3>
+<blockquote>
+<p><a href="https://github.com/commonmark/cmark">cmark</a> can render a Markdown version of War and Peace in the blink of an eye (127 milliseconds on a ten year old laptop, vs. 100-400 milliseconds for an eye blink). In our <a href="https://github.com/commonmark/cmark/blob/master/benchmarks.md">benchmarks</a>, cmark is 10,000 times faster than the original Markdown.pl, and on par with the very fastest available Markdown processors.</p>
+</blockquote>
+<blockquote>
+<p>The library has been extensively fuzz-tested using <a href="http://lcamtuf.coredump.cx/afl">american fuzzy lop</a>. The test suite includes pathological cases that bring many other Markdown parsers to a crawl (for example, thousands-deep nested bracketed text or block quotes).</p>
+</blockquote>
+<h3>Output Formats</h3>
+<ul>
+<li>Web View (see DownView class)</li>
+<li>HTML</li>
+<li>XML</li>
+<li>LaTeX</li>
+<li>groff man</li>
+<li>CommonMark Markdown</li>
+<li>NSAttributedString</li>
+<li>AST (abstract syntax tree)</li>
+</ul>
+<h3>View Rendering</h3>
+<p>The <code>DownView</code> class offers a very simple way to parse a UTF-8 encoded string with Markdown and convert it to a web view that can be added to any view:</p>
+<pre><code class="language-swift">let downView = try? DownView(frame: self.view.bounds, markdownString: &quot;**Oh Hai**&quot;) {
+// Optional callback for loading finished
+}
+// Now add to view or constrain w/ Autolayout
+// Or you could optionally update the contents at some point:
+try? downView?.update(markdownString:  &quot;## [Google](https://google.com)&quot;) {
+// Optional callback for loading finished
 }
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>Fist Header</th>
-<th>Second Header</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>content cell</td>
-<td>content cell</td>
-</tr>
-<tr>
-<td>content cell</td>
-<td>content cell</td>
-</tr>
-</tbody>
-</table>
+<p>Meta example of rendering this README:</p>
+<p><img src="Images/ohhai.gif" alt="Example gif" /></p>
+<h3>Parsing API</h3>
+<p>The <code>Down</code> struct has everything you need if you just want out-of-the-box setup for parsing and conversion.</p>
+<pre><code class="language-swift">let down = Down(markdownString: &quot;## [Down](https://github.com/iwasrobbed/Down)&quot;)
+
+// Convert to HTML
+let html = try? down.toHTML()
+// &quot;&lt;h2&gt;&lt;a href=\&quot;https://github.com/iwasrobbed/Down\&quot;&gt;Down&lt;/a&gt;&lt;/h2&gt;\n&quot;
+
+// Convert to XML
+let xml = try? down.toXML()
+// &quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;!DOCTYPE document SYSTEM \&quot;CommonMark.dtd\&quot;&gt;\n&lt;document xmlns=\&quot;http://commonmark.org/xml/1.0\&quot;&gt;\n  &lt;heading level=\&quot;2\&quot;&gt;\n    &lt;link destination=\&quot;https://github.com/iwasrobbed/Down\&quot; title=\&quot;\&quot;&gt;\n      &lt;text&gt;Down&lt;/text&gt;\n    &lt;/link&gt;\n  &lt;/heading&gt;\n&lt;/document&gt;\n&quot;
+
+// Convert to groff man
+let man = try? down.toGroff()
+// &quot;.SS\nDown (https://github.com/iwasrobbed/Down)\n&quot;
+
+// Convert to LaTeX
+let latex = try? down.toLaTeX()
+// &quot;\\subsection{\\href{https://github.com/iwasrobbed/Down}{Down}}\n&quot;
+
+// Convert to CommonMark Markdown
+let commonMark = try? down.toCommonMark()
+// &quot;## [Down](https://github.com/iwasrobbed/Down)\n&quot;
+
+// Convert to an attributed string
+let attributedString = try? down.toAttributedString()
+// NSAttributedString representation of the rendered HTML;
+// by default, uses a stylesheet that matches NSAttributedString's default font,
+// but you can override this by passing in your own, using the 'stylesheet:' parameter.
+
+// Convert to abstract syntax tree
+let ast = try? down.toAST()
+// Returns pointer to AST that you can manipulate
+
+</code></pre>
+<h3>Rendering Granularity</h3>
+<p>If you'd like more granularity for the output types you want to support, you can create your own struct conforming to at least one of the renderable protocols:</p>
 <ul>
-<li><input type="checkbox" disabled="" /> task one</li>
-<li><input type="checkbox" disabled="" /> task two</li>
-<li><input type="checkbox" checked="" disabled="" /> complated</li>
+<li>DownHTMLRenderable</li>
+<li>DownXMLRenderable</li>
+<li>DownLaTeXRenderable</li>
+<li>DownGroffRenderable</li>
+<li>DownCommonMarkRenderable</li>
+<li>DownASTRenderable</li>
+<li>DownAttributedStringRenderable</li>
 </ul>
-<p>whoami the i don't know
-no break is bad
-fuck</p>
+<p>Example:</p>
+<pre><code class="language-swift">public struct MarkdownToHTML: DownHTMLRenderable {
+/**
+A string containing CommonMark Markdown
+*/
+public var markdownString: String
 
+/**
+Initializes the container with a CommonMark Markdown string which can then be rendered as HTML using `toHTML()`
 
+- parameter markdownString: A string containing CommonMark Markdown
+
+- returns: An instance of Self
+*/
+@warn_unused_result
+public init(markdownString: String) {
+self.markdownString = markdownString
+}
+}
+</code></pre>
+<h3>Configuration of <code>DownView</code></h3>
+<p><code>DownView</code> can be configured with a custom bundle using your own HTML / CSS or to do things like supporting
+Dynamic Type or custom fonts, etc. It's completely configurable.</p>
+<p>This option can be found in <a href="https://github.com/iwasrobbed/Down/blob/master/Source/Views/DownView.swift#L26">DownView's instantiation function</a>.</p>
+<h5>Prevent zoom</h5>
+<p>The default implementation of the <code>DownView</code> allows for zooming in the rendered content. If you want to disable this, then you’ll need to instantiate the <code>DownView</code> with a custom bundle where the <code>viewport</code> in <code>index.html</code> has been assigned <code>user-scalable=no</code>. More info can be found <a href="https://github.com/iwasrobbed/Down/pull/30">here</a>.</p>
+<h3>Options</h3>
+<p>Each protocol has options that will influence either rendering or parsing:</p>
+<pre><code class="language-swift">/**
+Default options
+*/
+public static let `default` = DownOptions(rawValue: 0)
+
+// MARK: - Rendering Options
+
+/**
+Include a `data-sourcepos` attribute on all block elements
+*/
+public static let sourcePos = DownOptions(rawValue: 1 &lt;&lt; 1)
+
+/**
+Render `softbreak` elements as hard line breaks.
+*/
+public static let hardBreaks = DownOptions(rawValue: 1 &lt;&lt; 2)
+
+/**
+Suppress raw HTML and unsafe links (`javascript:`, `vbscript:`,
+`file:`, and `data:`, except for `image/png`, `image/gif`,
+`image/jpeg`, or `image/webp` mime types).  Raw HTML is replaced
+by a placeholder HTML comment. Unsafe links are replaced by
+empty strings.
+*/
+public static let safe = DownOptions(rawValue: 1 &lt;&lt; 3)
+
+// MARK: - Parsing Options
+
+/**
+Normalize tree by consolidating adjacent text nodes.
+*/
+public static let normalize = DownOptions(rawValue: 1 &lt;&lt; 4)
+
+/**
+Validate UTF-8 in the input before parsing, replacing illegal
+sequences with the replacement character U+FFFD.
+*/
+public static let validateUTF8 = DownOptions(rawValue: 1 &lt;&lt; 5)
+
+/**
+Convert straight quotes to curly, --- to em dashes, -- to en dashes.
+*/
+public static let smart = DownOptions(rawValue: 1 &lt;&lt; 6)
+</code></pre>
+<h3>Supports</h3>
+<p>Swift; iOS 9+, tvOS 9+, macOS 10.11+</p>
+<h3>Markdown Specification</h3>
+<p>Down is built upon the <a href="http://commonmark.org">CommonMark</a> specification.</p>
+<h3>A little help from my friends</h3>
+<p>Please feel free to fork and create a pull request for bug fixes or improvements, being sure to maintain the general coding style, adding tests, and adding comments as necessary.</p>
+<h3>Credit</h3>
+<p>This library is a wrapper around <a href="https://github.com/commonmark/cmark">cmark</a>, which is built upon the <a href="http://commonmark.org">CommonMark</a> Markdown specification.</p>
+<p><a href="https://github.com/commonmark/cmark">cmark</a> is Copyright (c) 2014 - 2017, John MacFarlane. View <a href="https://github.com/commonmark/cmark/blob/master/COPYING">full license</a>.</p>
 		</ul>
 		<div class="pagination center" id="page">
 		</div>
