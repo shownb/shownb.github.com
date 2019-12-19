@@ -33,95 +33,38 @@
 <main class="page-content" aria-label="Content">
 	<div class="wrapper">
 		<ul class="post-list" id="container">
-<p>设备orangePi zero，装了debian，有一个无线网卡，一个有线网卡。让无线网卡拨号某个vpn，然后有线网卡做网关，接交换机之类，全局上网。</p>
-<p>orangePi Zero的设置如下。无线网卡为wlan0,有线网卡为eth0</p>
-<pre><code class="language-shell">#设置eth0的ip
-sudo ip addr add 10.0.0.1/24 dev eth0
-#所有数据走wlan0
-sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
-#拨号vpn后，所有数据走tun0
-sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
-nano /etc/sysctl.conf
-#加入转发 net.ipv4.ip_forward = 1
-sysctl -p
+<p>word_to_word</p>
+<p><a href="http://www.abc.com">http://www.abc.com</a></p>
+<p><del>wrong text.</del></p>
+<pre><code>void hello()
+{
+    print(&quot;hello&quot;)
+}
 </code></pre>
-<p>配置dnsmasq,做到即插即用，不需要再自己设置IP网关等。
-interface= eth0 #interface 名称
-bind-interfaces
-dhcp-range= 10.0.0.100,10.0.0.200,24h #应该和上面分配的 ip 地址和子网掩码相符
-dhcp-option = 6, 8.8.8.8,8.8.4.4 # DNS 地址</p>
-<p>以下是openvpn配置部分。
-服务器</p>
-<pre><code>sudo apt-get update
-sudo apt-get install openvpn easy-rsa
-make-cadir ~/openvpn-ca
-cd ~/openvpn-ca
-nano vars
-#特别要注意是export KEY_NAME=&quot;server&quot;
-#其他默认
-cd ~/openvpn-ca
-source vars
-./clean-all
-./build-ca
-./build-key-server server
-./build-dh
-openvpn --genkey --secret keys/ta.key
-#等等等
-#拷贝到/etc/openvpn目录
-cd ~/openvpn-ca/keys
-sudo cp ca.crt server.crt server.key ta.key dh2048.pem /etc/openvpn
-</code></pre>
-<p>sudo nano /etc/openvpn/server.conf
-server.conf内容如下</p>
-<pre><code>port 1194
-proto tcp
-dev tun
-ca ca.crt
-cert EasyBox.crt
-key EasyBox.key
-dh dh2048.pem
-server 10.18.0.0 255.255.255.0
-ifconfig-pool-persist ipp.txt
-push &quot;redirect-gateway def1 bypass-dhcp&quot;
-push &quot;dhcp-option DNS 114.114.114.114&quot;
-push &quot;dhcp-option DNS 114.114.115.115&quot;
-tls-auth ta.key
-key-direction 0
-cipher AES-128-CBC
-auth SHA256
-duplicate-cn
-keepalive 10 120
-comp-lzo
-user nobody
-group nogroup
-persist-key
-persist-tun
-status openvpn-status.log
-verb 3
-</code></pre>
-<p>启动服务啦</p>
-<blockquote>
-<p>sudo systemctl start openvpn@server
-iptables -t nat -A POSTROUTING -s 10.18.0.0/24 -o eth0 -j MASQUERADE
-看看状态
-systemctl status openvpn@server</p>
-</blockquote>
-<p><strong>把客户端的也生成好</strong></p>
-<pre><code class="language-shell">cd ~/openvpn-ca
-source vars
-./build-key client1
-</code></pre>
-<p>客户端设置
-apt-get install openvpn
-sudo openvpn --config client1.ovpn 即可以上网
-client1.ovpn生成请看<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04</a></p>
-<p>参考文章
-<a href="https://gist.github.com/snakevil/7d7af1d8ca2c739e3fedc5b15eb8e4aa">https://gist.github.com/snakevil/7d7af1d8ca2c739e3fedc5b15eb8e4aa</a> 使用树莓派3B打造超强路由之二：初成
-<a href="https://blog.wolftankk.com/2011/10/18/use-debian-for-route/">https://blog.wolftankk.com/2011/10/18/use-debian-for-route/</a> 使用debian做路由网关
-<a href="https://www.cnblogs.com/Security-Darren/p/4576731.html">https://www.cnblogs.com/Security-Darren/p/4576731.html</a> Ubuntu 设置NAT共享网络（命令行方法）
-<a href="https://my.oschina.net/u/1982421/blog/301274?p=%7B%7BcurrentPage+1%7D%7D">https://my.oschina.net/u/1982421/blog/301274?p=%7B%7BcurrentPage+1%7D%7D</a> 在 Cubieboard 上搭建 SoftAP 热点，并通过 OpenVPN 科学上网
-<a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04</a> How To Set Up an OpenVPN Server on Ubuntu 16.04
-<a href="https://www.gaojinan.com/vps-openvpn-china-telecom-unicom-mobile-mianliu-ml.html">https://www.gaojinan.com/vps-openvpn-china-telecom-unicom-mobile-mianliu-ml.html</a> 在VPS上搭建OpenVPN实现移动联通电信三网免流</p>
+<table>
+<thead>
+<tr>
+<th>Fist Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content cell</td>
+<td>content cell</td>
+</tr>
+<tr>
+<td>content cell</td>
+<td>content cell</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[] task one</li>
+<li>[] task two</li>
+<li><input type="checkbox" checked="" disabled="" /> complated</li>
+</ul>
+
 		</ul>
 		<div class="pagination center" id="page">
 		</div>
