@@ -203,7 +203,7 @@ pre > code {
         display: none;
     }
 
-    .site-nav:hover .trigger {
+    .site-nav:active .trigger {
         display: block;
         padding-bottom: 5px;
     }
