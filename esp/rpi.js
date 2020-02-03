@@ -440,7 +440,7 @@ RaspberryPi.prototype.helloSensor1 = function (args) {
 
 
         client.on('message', function (topic, message) {
-            
+            console.log(topic);
             message = new TextDecoder("utf-8").decode(message);
 
             switch (topic){
@@ -457,6 +457,7 @@ RaspberryPi.prototype.helloSensor1 = function (args) {
 
 
         client.on('message', function (topic, message) {
+            console.log(topic);
             message = new TextDecoder("utf-8").decode(message);
 
             switch (topic){
