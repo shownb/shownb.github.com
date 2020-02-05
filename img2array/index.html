@@ -190,7 +190,8 @@
 		<section class="section">
 			<h1>image2cpp</h1>
 			<p>image2cpp 是一个将 图片 转换为 字节数组 的简单工具 (或者将你的 数组 转换为一个 图片)</p>
-			<p>更多消息你可以看这里 <a href="https://github.com/javl/image2cpp" target="_blank">Github repository</a></p>
+			<p>翻版的代码看这里 <a href="https://github.com/shownb/shownb.github.com/tree/master/img2array" target="_blank">Github repository</a></p>
+			<p>原版的代码你可以看这里 <a href="https://github.com/javl/image2cpp" target="_blank">Github repository</a></p>
 			<p>这个工具可以离线使用</p>
 		</section>
 		<section class="section bottom-divider">
@@ -200,7 +201,7 @@
 					<input type="file" id="file-input" name="file-input" multiple/><br />
 				</div>
 				<div class="column column-center">
-					<h2 class="sub-section-title">or</h2>
+					<h2 class="sub-section-title">或者</h2>
 				</div>
 				<div class="column column-right">
 					<h2 class="sub-section-title">1. 把你想转换的 字节数组 粘贴在这里</h2>
@@ -209,8 +210,8 @@
 						<input type="number" min="0" id="text-input-width" class="size-input" value="128" /> x
 						<input type="number" min="0" id="text-input-height" class="size-input" value="64" /> px
 					</div>
-					<button onclick="handleTextInput('horizontal')">Read as horizontal</button>
-					<button onclick="handleTextInput('vertical')">Read as vertical</button>
+					<button onclick="handleTextInput('horizontal')">水平方向读取</button>
+					<button onclick="handleTextInput('vertical')">垂直方向读取</button>
 				</div>
 			</section>
 		</section>
@@ -228,24 +229,24 @@
 						</div>
 					</div>
 					<div class="table-row">
-						<div class="table-cell"><label>Background color:</label></div>
+						<div class="table-cell"><label>背景色:</label></div>
 						<div class="table-cell">
 							<input id="backgroundColorWhite" type="radio" name="backgroundColor" value="white" checked="checked" onchange="updateRadio('backgroundColor')"/>
-							<label for="backgroundColorWhite" class="smallLabel">White</label>
+							<label for="backgroundColorWhite" class="smallLabel">白</label>
 							<input id="backgroundColorBlack" type="radio" name="backgroundColor" value="black" onchange="updateRadio('backgroundColor')"/>
-							<label for="backgroundColorBlack" class="smallLabel">Black</label>
+							<label for="backgroundColorBlack" class="smallLabel">黑</label>
 							<input id="backgroundColorTransparent" type="radio" name="backgroundColor" value="transparent" onchange="updateRadio('backgroundColor')"/>
-							<label for="backgroundColorTransparent" class="smallLabel">Transparent</label>
+							<label for="backgroundColorTransparent" class="smallLabel">透明</label>
 						</div>
 					</div>
 					<div class="table-row">
-						<div class="table-cell"><label for="invertColors">Invert image colors</label></div>
+						<div class="table-cell"><label for="invertColors">反转图片颜色</label></div>
 						<div class="table-cell">
 							<input id="invertColors" type="checkbox" onchange="updateBoolean('invertColors')" />
 						</div>
 					</div>
 					<div class="table-row">
-						<div class="table-cell"><label>Brightness / alpha threshold: </label></div>
+						<div class="table-cell"><label>亮度 / alpha threshold: </label></div>
 						<div class="table-cell">
 							<input id="threshold" class="size-input" type="number" min="0" max="255" name="threshold" oninput="updateInteger('threshold')" value="128"/>
 							<div class="note">
@@ -253,10 +254,10 @@
 						</div>
 					</div>
 					<div class="table-row">
-						<div class="table-cell"><label for="scale">Scaling</label></div>
+						<div class="table-cell"><label for="scale">伸缩</label></div>
 						<div class="table-cell">
 							<select id="scale" name="scale" onchange="updateInteger('scale')">
-								<option value="1">original size</option>
+								<option value="1">原来尺寸</option>
 								<option value="2">scale to fit, keeping proportions</option>
 								<option value="3">stretch to fill canvas</option>
 								<option value="4">stretch to fill canvas horizontally</option>
@@ -275,7 +276,7 @@
 					</div>
 				</div>
 				<div class="note">
-					<i>Note: centering the image only works when using a canvas larger than the original image.</i>
+					<i>Note: 居中图片只会在canvas原来图片大的情况下才会生效</i>
 				</div>
 			</section>
 		</section>
