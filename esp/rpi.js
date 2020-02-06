@@ -438,7 +438,7 @@ RaspberryPi.prototype.getInfo = function () {
 
 RaspberryPi.prototype.helloPi = function (args) {
     this.devices[args.DEVICE_NAME] = {address: args.ADDRESS, state: {}};
-    let client =  mqtt.connect({host: args.ADDRESS, port: 9001});
+    let client =  mqtt.connect({host: args.ADDRESS});
     client.subscribe("rpi/devices/sensors/#");
     this.clients[args.DEVICE_NAME] = client;
 };
