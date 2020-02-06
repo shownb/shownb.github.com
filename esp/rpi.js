@@ -16,7 +16,8 @@ let  RaspberryPi = function () {
 };
 const SensorType = {
     TILT: 'Tilt Switch',
-    PROXIMITY: 'Proximity Sensor'
+    PROXIMITY: 'Proximity Sensor',
+    TOUCH: '触摸'
 
 };
 
@@ -47,11 +48,11 @@ RaspberryPi.prototype.getInfo = function () {
 
                     ADDRESS: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: "raspberrypi.local"
+                        defaultValue: "192.168.178.44"
                     },
                     DEVICE_NAME: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'rpi1'
+                        defaultValue: 'zkb'
                     }
                 }
             },
@@ -62,22 +63,25 @@ RaspberryPi.prototype.getInfo = function () {
                 text: 'connect [SENSORTYPE] [SENSOR_NAME]at gpio[PIN] of [DEVICE_NAME]',
                 func: 'helloSensor1',
                 arguments: {
+                	//用来操作是哪一类型的传感器
                     SENSORTYPE: {
                         type: Scratch.ArgumentType.STRING,
                         menu: 'sensorTypes',
-                        defaultValue: SensorType.TILT
+                        defaultValue: SensorType.TOUCH
                     },
+                    //要操作的设备，是掌控板还是树莓派
                     DEVICE_NAME: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'rpi1'
+                        defaultValue: 'zkb'
                     },
                     PIN: {
-                        type: Scratch.ArgumentType.NUMBER,
-                        defaultValue: 26
+                        type: Scratch.ArgumentType.STRING,
+                        defaultValue: 'P'
                     },
+                    //用来alias
                     SENSOR_NAME: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'Sensor1'
+                        defaultValue: 'Touch_P'
                     }
                 }
             },
@@ -352,22 +356,45 @@ RaspberryPi.prototype.getInfo = function () {
 
             },
             {
-                opcode: 'isTilted',
+                  opcode: 'whenTouched',
+                    blockType: Scratch.BlockType.HAT,
+                    func: 'whenTouched',
+                    text: 'when [SENSOR_NAME] of [DEVICE_NAME] is tilted',
+                    arguments: {
+
+                        DEVICE_NAME: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: 'zkb'
+                        },
+
+                        SENSOR_NAME: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: 'touch_p'
+                        }
+                    }
+
+            },
+            {
+                opcode: 'isTouched',
                 blockType: Scratch.BlockType.BOOLEAN,
-                text: 'tilt sensor [SENSOR_NAME] of [DEVICE_NAME] tilted?',
+                text: 'tilt sensor [SENSOR_NAME] of [DEVICE_NAME] [PIN] touch?',
                 arguments: {
 
                     DEVICE_NAME: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'rpi1'
+                        defaultValue: 'zkb'
                     },
 
                     SENSOR_NAME: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'tiltSensor'
-                    }
+                        defaultValue: 'touch_p'
+                    },
+                        PIN: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: 'P'
+                        }
                 },
-                func: 'isTilted'
+                func: 'isTouched'
             },
 
             {
@@ -411,16 +438,9 @@ RaspberryPi.prototype.getInfo = function () {
 
 RaspberryPi.prototype.helloPi = function (args) {
     this.devices[args.DEVICE_NAME] = {address: args.ADDRESS, state: {}};
-
-
     let client =  mqtt.connect({host: args.ADDRESS, port: 9001});
     client.subscribe("rpi/devices/sensors/#");
-
-
     this.clients[args.DEVICE_NAME] = client;
-
-
-
 };
 
 
@@ -440,12 +460,29 @@ RaspberryPi.prototype.helloSensor1 = function (args) {
 
 
         client.on('message', function (topic, message) {
-            console.log(topic);
             message = new TextDecoder("utf-8").decode(message);
 
             switch (topic){
                 case "rpi/devices/sensors/tilt/"+args.PIN:
                     self.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].tilted = String(message) === "true";
+                    break;
+            }
+        });
+    }
+
+    if(args.SENSORTYPE === SensorType.TOUCH){
+    	//args.SENSOR_NAME用来alias 也用来放进字典，然后操作
+    	//console.log("/"+args.DEVICE_NAME+"/subscription");
+    	//console.log(JSON.stringify({command: "SUBSCRIBE", args: {ALIAS:args.SENSOR_NAME, DEVICE: "TOUCH", PIN: args.PIN}}));
+        this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME] = {touched: false};
+        this.clients[args.DEVICE_NAME].publish("/"+args.DEVICE_NAME+"/subscription", JSON.stringify({command: "SUBSCRIBE", args: {ALIAS:args.SENSOR_NAME, DEVICE: "TOUCH", PIN: args.PIN}}));
+
+        client.on('message', function (topic, message) {
+            message = new TextDecoder("utf-8").decode(message);
+
+            switch (topic){
+                case "/"+args.DEVICE_NAME+"/devices/sensors/touch/"+args.PIN:
+                    self.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].touch = String(message) === "true";
                     break;
             }
         });
@@ -457,7 +494,6 @@ RaspberryPi.prototype.helloSensor1 = function (args) {
 
 
         client.on('message', function (topic, message) {
-            console.log(topic);
             message = new TextDecoder("utf-8").decode(message);
 
             switch (topic){
@@ -491,8 +527,18 @@ RaspberryPi.prototype.whenTilted = function (args) {
      return this.devices[args.DEVICE_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME] &&
             this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].tilted;
 };
+
+RaspberryPi.prototype.whenTouched = function (args) {
+     return this.devices[args.DEVICE_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME] &&
+            this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].touched;
+};
+
 RaspberryPi.prototype.isTilted = function (args) {
     return this.devices[args.DEVICE_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].tilted;
+};
+
+RaspberryPi.prototype.isTouched = function (args) {
+    return this.devices[args.DEVICE_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME] && this.devices[args.DEVICE_NAME].state[args.SENSOR_NAME].touched;
 };
 
 RaspberryPi.prototype.isProximal = function (args) {
@@ -523,4 +569,3 @@ RaspberryPi.prototype.unbrakeMotor = function (args) {
 
 
 Scratch.extensions.register(new RaspberryPi());
-
