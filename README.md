@@ -4,14 +4,14 @@ shownb.github.io/test
 Table of Contents
 =================
 
-  * [sb](#whatchange)
-  * [bs](#longstory)
+  * [111](#111)
+  * [222](#222)
   * [STDIN](#stdin)
 
 Installation
 ============
 
-sb
+111
 -----
 hehe
 
@@ -31,5 +31,5 @@ STDIN
 
 
 
-bs
+222
 -----
