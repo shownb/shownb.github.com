@@ -4,14 +4,14 @@ shownb.github.io/test
 Table of Contents
 =================
 
-  * [中文](#111)
+  * [变更日志](#变更日志)
   * [222](#222)
   * [STDIN](#stdin)
 
 Installation
 ============
 
-中文
+变更日志
 -----
 hehe
 
