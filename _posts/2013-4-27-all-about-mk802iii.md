@@ -104,3 +104,100 @@ pc:内核参数，就是写在grub 的menu.lst里面或者通过其他地方，�
 [linux下的rk3066 adb]: http://www.rikomagic.co.uk/forum/viewtopic.php?f=9&t=4080
 [cwm for Rockchip]: http://androtab.info/clockworkmod/rockchip/install/
 [olegk0的内核]: https://github.com/olegk0/rk3066-kernel
+
+旧机nook simple touch重新用
+```bash
+die() {
+ # rm -rf /tmp/ramdisk
+
+  echo -e $@
+  exit 1
+}
+
+PROP_PATCHED=0
+INIT_PATCHED=0
+
+[ -f /nook/boot/uRamdisk ] || die "Cannot find uRamdisk"
+
+mkdir -p /tmp/ramdisk
+dd if=/nook/boot/uRamdisk of=/tmp/ramdisk/ramdisk.gz bs=64 skip=1
+
+cd /tmp/ramdisk
+zcat ramdisk.gz | cpio -id
+rm ramdisk.gz
+
+[ -f /tmp/ramdisk/default.prop.orig ] || cp /tmp/ramdisk/default.prop /tmp/ramdisk/default.prop.orig
+
+sed -i \
+  -e's/^ro.secure=1/ro.secure=0/' \
+  -e's/^persist.service.adb.enable=0/persist.service.adb.enable=1/' \
+  /tmp/ramdisk/default.prop
+
+# Verify that the patched lines exist in default.prop
+grep -q '^ro.secure=0' /tmp/ramdisk/default.prop && \
+  grep -q '^persist.service.adb.enable=1' /tmp/ramdisk/default.prop && \
+  PROP_PATCHED=1
+
+[ -f /tmp/ramdisk/init.rc.orig ] || cp /tmp/ramdisk/default.prop /tmp/ramdisk/init.rc.orig
+
+# Comment out the "   disabled" line after "service adb" 
+# Comment out the "on property:persist.service.adb*" blocks entirely
+sed -i \
+  -e '/^service adbd/{ N s/\(service adbd.*\n\) /\1#MOD# / }' \
+  -e '/^on property:persist.service.adb.enable/{ N s/^\(.*\)\n \(.*\)/#MOD#\1\n#MOD# \2/}' \
+  /tmp/ramdisk/init.rc
+
+# Verify that the patched lines exist in init.rc
+grep -q '#MOD#on property:persist' /tmp/ramdisk/init.rc && \
+  grep -q '#MOD#    disabled' /tmp/ramdisk/init.rc && \
+  INIT_PATCHED=1
+
+[ "$PROP_PATCHED" -eq "1" -a "$INIT_PATCHED" -eq "1" ] || die "Failed patching uRamdisk"
+
+find . | cpio -o -H newc > /tmp/ramdisk.cpio
+gzip -9 -c /tmp/ramdisk.cpio > /tmp/ramdisk.cpio.gz
+
+mkimage -A arm -O linux -T ramdisk -C gzip -a 0 -e 0 -d /tmp/ramdisk.cpio.gz /tmp/uRamdisk > /dev/null
+[ "$?" -eq "0" ] || die "Could not build uRamdisk"
+
+
+if [ ! -f /nook/boot/uRamdisk.orig ]; then
+  mv /nook/boot/uRamdisk /nook/boot/uRamdisk.orig
+fi
+
+mv /tmp/uRamdisk /nook/boot
+rm -rf /tmp/ramdisk
+
+echo "uRamdisk patched"
+```
+
+sudo apt-get install u-boot-tools
+
+/data/data/com.android.providers.settings/databases/databases/settings.db
+
+sqlite3 settings.db "select * from system where name='wifi_static_ip'"
+
+sqlite3 settings.db "update system set value=0 where name='wifi_use_static_ip'"
+
+dropbear
+```bash
+# Creating a home-dir for DropBear
+mkdir /data/dropbear
+chmod 755 /data/dropbear
+mkdir /data/dropbear/.ssh
+chmod 700 /data/dropbear/.ssh
+# Copy over our files
+mv /sdcard/authorized_keys /data/dropbear/.ssh/
+chown root: /data/dropbear/.ssh/authorized_keys
+chmod 600 /data/dropbear/.ssh/authorized_keys
+# Generate a hostkey, so we can use DropBear
+dropbearkey -t rsa -f /data/dropbear/dropbear_rsa_host_key
+dropbearkey -t dss -f /data/dropbear/dropbear_dss_host_key
+```
+编辑/boot/uRamdisk 里面的init.rc 重新打包
+```
+service sshd /system/xbin/dropbear -s
+   user  root
+   group root
+   oneshot
+```
